@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ develop ]
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: 22
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --- Setup ---
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # --- Install & Build ---
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # --- SPA Fallback ---
+      - name: SPA fallback (copy index.html to 404.html)
+        run: cp -f dist/index.html dist/404.html || echo 'dist not found'
+
+      # --- Deploy ---
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

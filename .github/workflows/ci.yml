@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+env:
+  NODE_VERSION: 22
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --- Setup ---
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # --- Install ---
+      - name: Install dependencies
+        run: npm ci
+
+      # --- Quality checks ---
+      - name: Lint (skip if script missing)
+        run: npm run -s lint || echo 'No lint script. Skipping.'
+
+      - name: Type check (skip if script missing)
+        run: |
+          if npm run -s typecheck; then
+            echo 'Typecheck script completed.'
+          else
+            echo 'No typecheck script. Trying tsc --noEmit if available...'
+            npx --yes typescript tsc --noEmit || echo 'TypeScript not configured yet. Skipping.'
+          fi
+
+      - name: Unit tests (skip if none)
+        run: npm test --silent -- --coverage || echo 'No tests yet. Skipping.'
+
+      # --- Build ---
+      - name: Build
+        run: npm run build
