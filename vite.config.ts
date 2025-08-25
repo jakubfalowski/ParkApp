@@ -1,10 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-
-import tailwindConfig from "./tailwind.config.js"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  base: "/ParkApp/", 
-  plugins: [react(), tailwindcss({ config: tailwindConfig })],
+  base: "/ParkApp/",
+  plugins: [react(), tailwindcss()],
 });

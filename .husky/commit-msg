@@ -1,0 +1,2 @@
+echo "Checks commit name..."
+npx commitlint --edit "$1"

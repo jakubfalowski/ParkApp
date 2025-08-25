@@ -7,21 +7,21 @@ The goal of this project is to implement a small but production-like app showcas
 
 ## Tech stack
 
-- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)  
-- [Vite](https://vitejs.dev/) — fast bundler and dev server  
-- [Tailwind CSS 4](https://tailwindcss.com/) — styling and responsive design  
-- [React Router](https://reactrouter.com/) — routing (planned)  
-- [Apollo Client](https://www.apollographql.com/docs/react/) — GraphQL client (planned, mocked for now)  
-- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) — linting & formatting  
-- [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) — testing framework  
-- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline (build, lint, tests)  
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) — fast bundler and dev server
+- [Tailwind CSS 4](https://tailwindcss.com/) — styling and responsive design
+- [React Router](https://reactrouter.com/) — routing (planned)
+- [Apollo Client](https://www.apollographql.com/docs/react/) — GraphQL client (planned, mocked for now)
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) — linting & formatting
+- [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) — testing framework
+- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline (build, lint, tests)
 - [GitHub Pages](https://pages.github.com/) — automated deployment
 
 ---
 
 ## Requirements
 
-- **Node.js**: >= 22.x (aligned with CI/CD pipeline)  
+- **Node.js**: >= 22.x (aligned with CI/CD pipeline)
 - **npm** as package manager
 
 ---
@@ -98,8 +98,8 @@ A `.env.example` file will be added later for reference.
 
 ## Git workflow
 
-- Work is done on the `develop` branch.  
-- Commit messages in English, imperative style, e.g. *Add the application skeleton*.  
+- Work is done on the `develop` branch.
+- Commit messages in English, imperative style, e.g. _Add the application skeleton_.
 - Small, focused commits to show progress in clear stages.
 
 ---
@@ -108,7 +108,7 @@ A `.env.example` file will be added later for reference.
 
 - **CI** (continuous integration):  
   Runs on every push and pull request to `develop`.  
-  Includes install, lint, type-check, tests, and build.  
+  Includes install, lint, type-check, tests, and build.
 
 - **CD** (continuous deployment):  
   Every successful build on `develop` is deployed automatically to **GitHub Pages** at:  
@@ -118,8 +118,8 @@ A `.env.example` file will be added later for reference.
 
 ## Next steps
 
-- Configure Tailwind base theme (colors, fonts)  
-- Add Husky hooks (pre-commit lint + test, pre-push build)  
-- Integrate GraphQL client and mock API  
-- Implement authentication flow and remote control screen  
+- Configure Tailwind base theme (colors, fonts)
+- Add Husky hooks (pre-commit lint + test, pre-push build)
+- Integrate GraphQL client and mock API
+- Implement authentication flow and remote control screen
 - Expand test coverage with Vitest + React Testing Library + Cypress

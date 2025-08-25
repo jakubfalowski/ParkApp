@@ -1,0 +1,6 @@
+echo "Running pre-commit checks..."
+
+npx lint-staged
+npm run typecheck || npx tsc --noEmit
+npm run test
+npm run build
