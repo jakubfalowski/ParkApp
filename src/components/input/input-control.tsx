@@ -27,7 +27,6 @@ export type ValueTransform<T> = {
   onBlur?: (value: T) => T;
 };
 
-// InputControl — TYP
 export type SafeTextFieldProps = Omit<
   TextFieldProps,
   "name" | "value" | "inputRef" | "error" | "label" | "type" | "InputProps"
