@@ -10,11 +10,13 @@ The goal of this project is to implement a small but production-like app showcas
 - [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/) — fast bundler and dev server
 - [Tailwind CSS 4](https://tailwindcss.com/) — styling and responsive design
-- [React Router](https://reactrouter.com/) — routing (planned)
-- [Apollo Client](https://www.apollographql.com/docs/react/) — GraphQL client (planned, mocked for now)
+- [React Router](https://reactrouter.com/) — routing
+- [Apollo Client](https://www.apollographql.com/docs/react/) — GraphQL client with error handling, retry, and auth link
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) — linting & formatting
-- [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) — testing framework
-- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline (build, lint, tests)
+- [Husky](https://typicode.github.io/husky) + [lint-staged](https://github.com/okonet/lint-staged) + [commitlint](https://commitlint.js.org/) — git hooks & commit conventions
+- [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) — unit & integration tests
+- [Cypress](https://www.cypress.io/) — end-to-end tests (auth flow)
+- [GitHub Actions](https://docs.github.com/en/actions) — CI/CD pipeline (lint, type-check, test, build, deploy)
 - [GitHub Pages](https://pages.github.com/) — automated deployment
 
 ---
@@ -67,59 +69,83 @@ Run tests:
 npm run test
 ```
 
+Run e2e tests with Cypress:
+
+```bash
+npm run cypress:open
+# or
+npm run cypress:run
+```
+
 ---
 
-## Project structure (current draft)
+## Project structure
 
 ```
 src/
  ├─ app/              # App entry (App.tsx, main.tsx, providers, routing)
  ├─ assets/           # Static assets (images, fonts, icons)
  ├─ components/       # Reusable UI components (generic UI)
- ├─ features/         # Feature-based modules (domain-specific)
+ ├─ features/         # Feature-based modules (auth/, remote-control/, etc.)
+ │   └─ auth/         # Login page, schema validation, API hooks
  ├─ hooks/            # Reusable React hooks (cross-feature)
- ├─ services/         # API clients, GraphQL ops, integrations, msw mocks
+ ├─ schemas/          # Zod schemas for validation (e.g. loginSchema)
+ ├─ services/         # API clients, GraphQL client, MSW mocks
  ├─ styles/           # Global styles (Tailwind base, tokens)
- ├─ tests/            # Test infra (e.g. setup/setupTests.ts, test utils)
- ├─ types/            # Global TypeScript types (incl. vite-env.d.ts)
- ├─ utils/            # Pure helpers (date, formatters, guards)
+ ├─ tests/            # Test infra (setupTests.ts, test utils)
+ ├─ types/            # Global TypeScript types (e.g. vite-env.d.ts)
+ ├─ utils/            # Pure helpers (date, formatters, constants)
 ```
-
-This structure will evolve as features are implemented (e.g. `graphql/`, `lib/`).
 
 ---
 
 ## Environment variables
 
-Planned usage of `.env` for configuration (e.g. API endpoints).  
-A `.env.example` file will be added later for reference.
+- `VITE_API_URL` — GraphQL endpoint (proxied in dev through Vite config)
+- `VITE_MAIL` / `VITE_PASSWORD` — test credentials for Cypress
+
+👉 See `.env.example` for reference.
 
 ---
 
 ## Git workflow
 
 - Work is done on the `develop` branch.
-- Commit messages in English, imperative style, e.g. _Add the application skeleton_.
+- Conventional Commits enforced via **commitlint**.  
+  Example:
+
+  ```
+  feat(auth): Add login page
+  test(auth): Add basic e2e login tests with Cypress
+  chore: Configure Husky with lint-staged and commitlint
+  ```
+
 - Small, focused commits to show progress in clear stages.
 
 ---
 
 ## CI/CD
 
-- **CI** (continuous integration):  
-  Runs on every push and pull request to `develop`.  
+- **CI** runs on every push and pull request to `develop`.  
   Includes install, lint, type-check, tests, and build.
 
-- **CD** (continuous deployment):  
-  Every successful build on `develop` is deployed automatically to **GitHub Pages** at:  
+- **CD** deploys every successful build on `develop` to **GitHub Pages**:  
   👉 [https://jakubfalowski.github.io/ParkApp/](https://jakubfalowski.github.io/ParkApp/)
 
 ---
 
-## Next steps
+## Current progress
 
-- Configure Tailwind base theme (colors, fonts)
-- Add Husky hooks (pre-commit lint + test, pre-push build)
-- Integrate GraphQL client and mock API
-- Implement authentication flow and remote control screen
-- Expand test coverage with Vitest + React Testing Library + Cypress
+- ✅ Tailwind theme configuration
+- ✅ Husky hooks (pre-commit lint + test, pre-push build)
+- ✅ Apollo Client integration with auth & error handling
+- ✅ Login page with form validation (React Hook Form + Zod)
+- ✅ Unit tests for form controls (Vitest + RTL)
+- ✅ Basic Cypress e2e tests for login flow
+- 🚧 Remote control screen (main assignment feature)
+
+---
+
+## Trello board
+
+👉 [Project board](https://trello.com/b/pOuD9WpH/parkapp)
