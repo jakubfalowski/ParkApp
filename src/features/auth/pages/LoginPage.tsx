@@ -1,14 +1,18 @@
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { useForm, type SubmitHandler } from "react-hook-form";
+
+import { InputControl } from "@components/input/input-control";
+import { useAuth } from "@features/auth/context/use-auth";
+
 import { loginSchema } from "../schemas/login-schema";
 import type { LoginFormValues } from "../schemas/login-schema";
-import { InputControl } from "@components/input/input-control";
-import { useNavigate } from "react-router-dom";
 import { useLogin } from "../api/useLogin";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { submit, loading, error } = useLogin();
+  const { login } = useAuth();
   const methods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     mode: "onSubmit",
@@ -20,6 +24,7 @@ export default function LoginPage() {
   }) => {
     const res = await submit({ email, password });
     if (res?.token) {
+      login(res.token);
       navigate("/");
     }
   };
