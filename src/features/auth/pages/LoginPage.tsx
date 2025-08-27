@@ -43,7 +43,11 @@ export default function LoginPage() {
       <button type="submit" disabled={loading} data-cy="submit">
         {loading ? "Logowanie..." : "Zaloguj"}
       </button>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p role="alert" data-cy="error">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
