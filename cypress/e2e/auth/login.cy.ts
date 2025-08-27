@@ -23,15 +23,21 @@ describe("LoginPage", () => {
   });
 
   it("przechodzi z poprawnymi danymi i wywołuje submit handler", () => {
-    cy.intercept("POST", "/api/graphql").as("loginRequest");
-    cy.log(Cypress.env("VITE_MAIL"));
-    cy.log("ee");
-    cy.log(Cypress.env("VITE_PASSWORD"));
+    cy.intercept("POST", "/api").as("loginRequest");
 
     cy.dataCy("email").type(Cypress.env("VITE_MAIL"));
     cy.dataCy("password").type(Cypress.env("VITE_PASSWORD"));
     cy.dataCy("submit").click();
 
     cy.wait("@loginRequest").its("response.statusCode").should("eq", 200);
+
+    cy.window()
+      .its("localStorage.__token__")
+      .should("be.a", "string")
+      .and((t) => expect(t.length).to.be.greaterThan(10));
+
+    cy.get("body")
+      .find('[data-cy="error"]', { timeout: 0 })
+      .should("not.exist");
   });
 });
