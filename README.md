@@ -126,7 +126,7 @@ src/
   Includes install, lint, type-check, tests, and build.
 
 - **CD** deploys every successful build on `develop` to **GitHub Pages**:  
-  👉 [https://jakubfalowski.github.io/ParkApp/](https://jakubfalowski.github.io/ParkApp/)
+  👉 [https://jakubfalowski.github.io/ParkApp/](https://jakubfalowski.github.io/ParkApp/) (For full verification of the application, please run it locally, as there was a CORS issue when attempting to connect to the API. To address this, I set up a local proxy, which does not behave identically in the production environment. Since deployment was not a requirement, I am leaving the current version as it is on the production server)
 
 ---
 
