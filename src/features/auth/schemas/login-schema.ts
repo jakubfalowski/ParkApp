@@ -13,7 +13,6 @@ export const loginSchema = z.object({
       .email({ message: M.email.invalid })
       .transform((v) => v.toLowerCase()),
   ),
-
   password: z.preprocess(
     toEmptyString,
     z.string().trim().min(6, { message: M.password.tooShort }),
