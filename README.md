@@ -84,14 +84,11 @@ npm run cypress:run
 ```
 src/
  ├─ app/              # App entry (App.tsx, main.tsx, providers, routing)
- ├─ assets/           # Static assets (images, fonts, icons)
+ ├─ assets/           # Static assets (images, icons)
  ├─ components/       # Reusable UI components (generic UI)
  ├─ features/         # Feature-based modules (auth/, remote-control/, etc.)
- │   └─ auth/         # Login page, schema validation, API hooks
- ├─ hooks/            # Reusable React hooks (cross-feature)
- ├─ schemas/          # Zod schemas for validation (e.g. loginSchema)
  ├─ services/         # API clients, GraphQL client, MSW mocks
- ├─ styles/           # Global styles (Tailwind base, tokens)
+ ├─ styles/           # Global styles (Tailwind base)
  ├─ tests/            # Test infra (setupTests.ts, test utils)
  ├─ types/            # Global TypeScript types (e.g. vite-env.d.ts)
  ├─ utils/            # Pure helpers (date, formatters, constants)
@@ -115,9 +112,8 @@ src/
   Example:
 
   ```
-  feat(auth): Add login page
-  test(auth): Add basic e2e login tests with Cypress
-  chore: Configure Husky with lint-staged and commitlint
+  feat(PA-7): Implement the login page
+  test(PA-9): Add basic e2e login tests with Cypress
   ```
 
 - Small, focused commits to show progress in clear stages.
@@ -142,7 +138,14 @@ src/
 - ✅ Login page with form validation (React Hook Form + Zod)
 - ✅ Unit tests for form controls (Vitest + RTL)
 - ✅ Basic Cypress e2e tests for login flow
-- 🚧 Remote control screen (main assignment feature)
+- ✅ Remote control screen finished with static pagination + simple tests
+
+---
+
+## Notes on Figma design
+
+- Only the **iPhone 14 view** of the remote screen was provided in Figma.
+- Responsive variants (tablet, desktop) were designed and implemented based on my own ideas, keeping consistency with the provided design.
 
 ---
 

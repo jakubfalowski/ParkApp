@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { IconLeftArrow } from "@utils/icons/left-arrow";
-import { remoteWithKeyImage } from "@utils/images";
+import { IconLeftArrow } from "assets/icons/left-arrow";
+import { remoteWithKeyImage } from "assets/images";
 
 type Props = { isDesktop: boolean };
 

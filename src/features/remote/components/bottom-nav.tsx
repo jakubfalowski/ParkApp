@@ -1,8 +1,8 @@
-import { IconMap } from "@utils/icons/map";
-import { IconScan } from "@utils/icons/scan";
-import { IconCar } from "@utils/icons/car";
-import { IconRemote } from "@utils/icons/remote";
-import { IconMenu } from "@utils/icons/menu";
+import { IconMap } from "assets/icons/map";
+import { IconScan } from "assets/icons/scan";
+import { IconCar } from "assets/icons/car";
+import { IconRemote } from "assets/icons/remote";
+import { IconMenu } from "assets/icons/menu";
 
 export function BottomNav() {
   return (

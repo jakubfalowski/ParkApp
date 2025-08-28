@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useMemo } from "react";
-import { IconCircle } from "@utils/icons/circle";
+import { IconCircle } from "assets/icons/circle";
 
 type Props = {
   total: number;

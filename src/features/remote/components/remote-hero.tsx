@@ -1,4 +1,4 @@
-import { remoteImage, remoteDesktopImage } from "@utils/images";
+import { remoteImage, remoteDesktopImage } from "assets/images";
 
 type Props = { isDesktop: boolean };
 
