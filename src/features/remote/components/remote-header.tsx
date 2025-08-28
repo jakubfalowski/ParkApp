@@ -32,7 +32,7 @@ export function RemoteHeader({ isDesktop }: Props) {
       <img
         className="absolute top-0 right-0"
         src={remoteWithKeyImage}
-        alt=""
+        alt="pilot z kluczykiem"
         aria-hidden
       />
     </header>
