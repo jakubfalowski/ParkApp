@@ -20,7 +20,7 @@ export function IconCircle({ fill = "white" }: IconProps) {
           r="8.111"
           fill={fill}
           stroke={fill}
-          stroke-width="5.778"
+          strokeWidth="5.778"
         />
       </g>
       <defs>
@@ -31,9 +31,9 @@ export function IconCircle({ fill = "white" }: IconProps) {
           width="22"
           height="23"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"

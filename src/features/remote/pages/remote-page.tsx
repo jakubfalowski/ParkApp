@@ -1,14 +1,13 @@
-import { IconCar } from "@utils/icons/car";
-import { IconCircle } from "@utils/icons/circle";
-import { IconLeftArrow } from "@utils/icons/left-arrow";
-import { IconMap } from "@utils/icons/map";
-import { IconMenu } from "@utils/icons/menu";
-import { IconRemote } from "@utils/icons/remote";
-import { IconScan } from "@utils/icons/scan";
-import { remoteImage, remoteWithKeyImage } from "@utils/images";
-import { GateOption } from "../components/gate-option";
+import clsx from "clsx";
+import { useMediaQuery } from "react-responsive";
 
-const items = [
+import { RemoteHeader } from "../components/remote-header";
+import { RemoteHero } from "../components/remote-hero";
+import { GateListSection } from "../components/gate-list-section";
+import { PaginationDots } from "../components/pagination-dots";
+import { BottomNav } from "../components/bottom-nav";
+
+const ITEMS = [
   "Szlaban Grzybowska 1",
   "Brama Garażowa 1",
   "Brama Wyjazdowa Śląska",
@@ -16,58 +15,30 @@ const items = [
 ];
 
 export default function RemotePage() {
-  return (
-    <div className="h-screen flex flex-col justify-between pb-16">
-      <header className="relative h-64 bg-gradient-to-b from-dark-yellow to-light-yellow px-6 py-8 rounded-b-2xl">
-        <div className="flex gap-6 items-start">
-          <button aria-label="Powrót">
-            <IconLeftArrow />
-          </button>
-          <div className="text-[2rem] font-bold mt-3 font-poppins leading-10">
-            <p>Otwórz</p>
-            <p>bramę</p>
-          </div>
-        </div>
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
-        <img
-          className="absolute top-0 right-0"
-          src={remoteWithKeyImage}
-          alt="background"
+  return (
+    <div className="h-screen flex flex-col justify-between pb-16 gap-12">
+      <RemoteHeader isDesktop={isDesktop} />
+
+      <section
+        className={clsx("flex gap-6 pr-6", isDesktop && "justify-center")}
+      >
+        <RemoteHero isDesktop={isDesktop} />
+        <GateListSection
+          title="Długa nazwa pilota"
+          items={ITEMS}
+          selectedIndex={0}
         />
-      </header>
-      <section className="flex gap-6 pr-6">
-        <img src={remoteImage} alt="remote" />
-        <div>
-          <p className="font-dm font-bold text-2xl leading-10">
-            Długa nazwa pilota
-          </p>
-          <div className="flex flex-col gap-4 mt-10">
-            {items.map((label) => (
-              <GateOption
-                key={label}
-                label={label}
-                selected={items[0] === label}
-              />
-            ))}
-          </div>
-          <p className="font-dm text-[18px] mt-10 leading-6 -translate-x-2">
-            Wybierz bramę, by otworzyć
-          </p>
-        </div>
       </section>
-      <section className="w-48 mx-auto pb-16 flex justify-between">
-        <IconCircle fill="white" />
-        <IconCircle fill="var(--color-dark-blue)" />
-        <IconCircle fill="white" />
-        <IconCircle fill="white" />
-      </section>
-      <footer className="w-full fixed bottom-0 left-0 flex justify-around items-center h-16">
-        <IconMap />
-        <IconScan />
-        <IconCar />
-        <IconRemote />
-        <IconMenu />
-      </footer>
+
+      <PaginationDots
+        total={4}
+        activeIndex={1}
+        className={clsx("w-48 mx-auto", !isDesktop ? "pb-20" : "pb-8")}
+      />
+
+      {!isDesktop && <BottomNav />}
     </div>
   );
 }
